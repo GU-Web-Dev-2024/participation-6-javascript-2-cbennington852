@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <div class="outside-border">
+    <div class="outside-border" id="outside">
 
         <h1>Guess the Number (1-10)</h1>
 
@@ -55,7 +55,9 @@
 
     <script>
         // JavaScript code goes here   
-
+        let rand = Math.floor(Math.random() * 10) + 1;
+        let input;
+        let numTries = 3;
 
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
         // for now just use the following which:
@@ -64,8 +66,29 @@
         // executes the code in the body of the anonymous function
         document.getElementById('guess-button').addEventListener('click', function () {
             //function body -- any code here will be executed when the registered event is triggered.
+            document.getElementById('guess-input').setAttribute('placeholder','Guess again!');
+            numTries--;
+                input = document.getElementById('guess-input').value;
+                if (input == rand) {
+                    //found it
+                    document.getElementById('message').innerText = "You Found it!";
+                    document.getElementById("outside").style.setProperty("background-color", "green");
+                    this.disable()
+                }
+                else if (input > rand) { //less than
+                    document.getElementById('message').innerText = "to high";
+                    document.getElementById("outside").style.setProperty("background-color", "orange");
+                }
+                else { //greater than
+                    document.getElementById('message').innerText = "Two low!";
+                    document.getElementById("outside").style.setProperty("background-color", "orange");
+                }
+                if (numTries === 0)
+                {
+                    document.getElementById('message').innerText = "Out of Tries! Value was " + rand ;
+                    this.disable()
+                }
         });
-
     </script>
 </body>
 
