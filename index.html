@@ -51,6 +51,9 @@
             <p id="message"></p>
         </div>
         <hr>
+        <div>
+            <button id="reset-button">Reset game</button>
+        </div>
     </div>
 
     <script>
@@ -73,7 +76,6 @@
                     //found it
                     document.getElementById('message').innerText = "You Found it!";
                     document.getElementById("outside").style.setProperty("background-color", "green");
-                    this.disable()
                 }
                 else if (input > rand) { //less than
                     document.getElementById('message').innerText = "to high";
@@ -86,8 +88,16 @@
                 if (numTries === 0)
                 {
                     document.getElementById('message').innerText = "Out of Tries! Value was " + rand ;
-                    this.disable()
+                    document.getElementById("outside").style.setProperty("background-color", "red");
+                    document.getElementById('guess-button').disable()
                 }
+        });
+
+        document.getElementById('reset-button').addEventListener('click', function () {
+            rand = Math.floor(Math.random() * 10) + 1;
+            numTries = 3;
+            document.getElementById("outside").style.setProperty("background-color", "white");
+            document.getElementById('message').innerText = "Ready to go again????!??!";
         });
     </script>
 </body>
