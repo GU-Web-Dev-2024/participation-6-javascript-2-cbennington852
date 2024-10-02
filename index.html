@@ -35,7 +35,20 @@
     <div class="outside-border" id="outside">
 
         <h1>Guess the Number (1-10)</h1>
-
+        <div>
+            <p>Enter a Range!</p>
+            <div>
+                <label for="min-input">Min Values:</label>
+                <input type="number" id="min-input"  placeholder="Enter the game min">
+            </div>
+            <div>
+                <label for="max-input">Max Values:</label>
+                <input type="number" id="max-input"  placeholder="Enter the game max">
+            </div>
+            <div>
+                <button id="input-num-button">Submit Guess</button>
+            </div>
+        </div>
         <hr>
         <div>
             <label for="guess-input">Guess:</label>
@@ -57,9 +70,8 @@
 
     <script>
         // JavaScript code goes here   
-        let rand = Math.floor(Math.random() * 10) + 1;
-        let input;
-        let numTries = 3;
+        var rand = Math.floor(Math.random() * 10) + 1;
+        var numTries = 3;
 
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
         // for now just use the following which:
@@ -70,7 +82,7 @@
             //function body -- any code here will be executed when the registered event is triggered.
             document.getElementById('guess-input').setAttribute('placeholder','Guess again!');
             numTries--;
-                input = document.getElementById('guess-input').value;
+                var input = document.getElementById('guess-input').value;
                 if (input === rand) {
                     //found it
                     document.getElementById('message').innerText = "You Found it!";
@@ -88,7 +100,6 @@
                 {
                     document.getElementById('message').innerText = "Out of Tries! Value was " + rand ;
                     document.getElementById("outside").style.setProperty("background-color", "red");
-                    document.getElementById('guess-button').disable()
                 }
         });
 
